@@ -1,5 +1,5 @@
 services:
-  app:
+  user-service:
     build: .
     restart: on-failure
     ports:
