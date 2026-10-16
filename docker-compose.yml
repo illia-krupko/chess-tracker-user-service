@@ -2,16 +2,19 @@ services:
   user-service:
     build: .
     restart: on-failure
-    ports:
-      - "${SPRING_LOCAL_PORT}:${SPRING_DOCKER_PORT}"
+
     env_file:
       - .env
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/user_service_db
+
     networks:
-      - default
-      - chesstracker
+      - gateway-user-service
+      - user-service-postgres
 
 networks:
-  chesstracker:
+  gateway-user-service:
+    external: true
+
+  user-service-postgres:
     external: true
